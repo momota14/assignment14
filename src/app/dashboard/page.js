@@ -1,11 +1,12 @@
-import React from 'react'
+import AppNavBar from '@/components/AppNavBar'
 
-function Dashbord() {
+function Dashboard() {
   return (
     <div>
-        <div>This is a dashbord</div>
+      <AppNavBar/>
+        <div>This is a dashboard</div>
     </div>
   )
 }
 
-export default Dashbord
+export default Dashboard
