@@ -2,11 +2,13 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+// import  nodemailer  from 'nodemailer';
 
-function Login() {
+function Register() {
   const [formValue, SetFormValue] = useState({
-    email: "email@email.com",
-    password: "123",
+    name: "",
+    email: "",
+    password: "",
   });
   const router = useRouter();
 
@@ -24,11 +26,30 @@ function Login() {
     } else if (formValue.password.length === 0) {
       alert("Password Required");
     } else {
+      // const transporter = nodemailer.createTransport({
+      //   host: "smtp.forwardemail.net",
+      //   port: 465,
+      //   secure: true,
+      //   auth: {
+      //     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+      //     user: "info@teamrabbil.com",
+      //     pass: "~sR4[bhaC[Qs",
+      //   },
+      // });
+
+      // await transporter.sendMail({
+      //   from: '"Fred Foo 👻" <info@teamrabbil.com">', // sender address
+      //   to: `${formValue.email}, ${formValue.email}`, // list of receivers
+      //   subject: "Hello ✔", // Subject line
+      //   text: "Hello world?", // plain text body
+      //   html: `Yur Verification code is ${randomNumber}`, // html body
+      // });
+
       const config = { method: "POST", body: JSON.stringify(formValue) };
-      const response = await fetch("/api/login", config);
+      const response = await fetch("/api/register", config);
       const json = await response.json();
       if (json["status"] === true) {
-        router.replace("/dashboard");
+        router.replace("/verify");
       } else {
         alert(json["message"]);
       }
@@ -36,29 +57,27 @@ function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center min-h-screen w-full">
       <div className="w-[30rem] m-auto">
-        {/* <form
-        onSubmit={() => {
-          Submit;
-        }}
-      >
-        <input
-          type="email"
-          placeholder="Email"
-          value={formValue.email}
-          onChange={(e) => inputChange("email", e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Email"
-          value={formValue.password}
-          onChange={(e) => inputChange("password", e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form> */}
-        <div className="text-3xl mb-6">Login</div>
+        <div className="text-3xl mb-6">Register</div>
         <form onSubmit={Submit}>
+          <div className="mb-6">
+            <label
+              htmlFor="name"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Your Name
+            </label>
+            <input
+              type="name"
+              id="name"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+              placeholder="name@flowbite.com"
+              required=""
+              value={formValue.name}
+              onChange={(e) => inputChange("name", e.target.value)}
+            />
+          </div>
           <div className="mb-6">
             <label
               htmlFor="email"
@@ -98,11 +117,11 @@ function Login() {
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Login
+              Register
             </button>
-            <Link href="/register">
+            <Link href="/login">
               <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Register
+                login
               </button>
             </Link>
           </div>
@@ -112,4 +131,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
