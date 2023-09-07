@@ -26,30 +26,11 @@ function Register() {
     } else if (formValue.password.length === 0) {
       alert("Password Required");
     } else {
-      // const transporter = nodemailer.createTransport({
-      //   host: "smtp.forwardemail.net",
-      //   port: 465,
-      //   secure: true,
-      //   auth: {
-      //     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-      //     user: "info@teamrabbil.com",
-      //     pass: "~sR4[bhaC[Qs",
-      //   },
-      // });
-
-      // await transporter.sendMail({
-      //   from: '"Fred Foo 👻" <info@teamrabbil.com">', // sender address
-      //   to: `${formValue.email}, ${formValue.email}`, // list of receivers
-      //   subject: "Hello ✔", // Subject line
-      //   text: "Hello world?", // plain text body
-      //   html: `Yur Verification code is ${randomNumber}`, // html body
-      // });
-
       const config = { method: "POST", body: JSON.stringify(formValue) };
       const response = await fetch("/api/register", config);
       const json = await response.json();
       if (json["status"] === true) {
-        router.replace("/verify");
+        router.replace(`/verify?email=${formValue.email}`);
       } else {
         alert(json["message"]);
       }
