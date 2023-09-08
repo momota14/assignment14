@@ -9,6 +9,7 @@ function Register() {
     name: "",
     email: "",
     password: "",
+    confirmPass: ""
   });
   const router = useRouter();
 
@@ -25,6 +26,8 @@ function Register() {
       alert("Email Required");
     } else if (formValue.password.length === 0) {
       alert("Password Required");
+    } else if (formValue.password !== formValue.confirmPass) {
+      alert("password don't match");
     } else {
       const config = { method: "POST", body: JSON.stringify(formValue) };
       const response = await fetch("/api/register", config);
@@ -53,7 +56,7 @@ function Register() {
               type="name"
               id="name"
               className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              placeholder="name@flowbite.com"
+              placeholder="Alex"
               required=""
               value={formValue.name}
               onChange={(e) => inputChange("name", e.target.value)}
@@ -70,7 +73,7 @@ function Register() {
               type="email"
               id="email"
               className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-              placeholder="name@flowbite.com"
+              placeholder="name@email.com"
               required=""
               value={formValue.email}
               onChange={(e) => inputChange("email", e.target.value)}
@@ -90,6 +93,23 @@ function Register() {
               required=""
               value={formValue.password}
               onChange={(e) => inputChange("password", e.target.value)}
+            />
+          </div>
+
+          <div className="mb-6">
+            <label
+              htmlFor="password"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Confirm password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+              required=""
+              value={formValue.confirmPass}
+              onChange={(e) => inputChange("confirmPass", e.target.value)}
             />
           </div>
 
