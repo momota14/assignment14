@@ -14,21 +14,6 @@ const AppNavBar = () => {
 
   return (
     <div>
-      {/* <Navbar expand="lg" className="shadow-sm  bg-white" variant="light">
-                <div className="container">
-                    <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
-                    <Navbar.Collapse id="navbarScroll">
-                        <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                                <Link href="/">Home</Link>
-                        </Nav>
-                        <div className="d-flex">
-                            <button onClick={Logout} className="btn btn-primary">Logout</button>
-                        </div>
-                    </Navbar.Collapse>
-                </div>
-            </Navbar> */}
-
       <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link href="/" className="flex items-center">
