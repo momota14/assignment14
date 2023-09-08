@@ -8,7 +8,7 @@ const AppNavBar = () => {
     const response = await fetch("/api/login");
     const json = await response.json();
     if (json["status"] === true) {
-      router.replace("/");
+      router.push("/");
     }
   };
 
