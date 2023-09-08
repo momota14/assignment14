@@ -8,7 +8,7 @@ export async function POST(req, res) {
   const min = 1000;
   const max = 9999;
   const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  const Token = await VerifyTokenCookie("verifyToken", randomNumber);
+  const Token = await VerifyTokenCookie("verifyCode", randomNumber);
 
   //Data Checking
   if (name !== "" && email !== "" && password !== "") {
