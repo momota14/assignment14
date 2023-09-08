@@ -1,9 +1,15 @@
+import { VerifyToken } from "@/utility/JWTHelper";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req, res) {
   const JsonBody = await req.json();
   const { email } = JsonBody || {};
+
+  // let token = req.cookies.get("verify");
+  //  let payload = token && (await VerifyToken(token.value));
+  //  const VerifyCode = payload["verifyToken"];
+  //   console.log(verifyCode)
 
   try {
     const transporter = nodemailer.createTransport({
@@ -18,7 +24,7 @@ export async function POST(req, res) {
       from: "Verify you mail <info@teamrabbil.com>",
       to: email,
       subject: "Your Verification code",
-      html: "<h1>YOur verification code is 1234</h1>",
+      html: `<h1>YOur verification code is 1234</h1>`,
     };
 
     await transporter.sendMail(mailOptions);
