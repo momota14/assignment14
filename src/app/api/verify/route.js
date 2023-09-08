@@ -42,7 +42,7 @@ export async function GET(req, res) {
 
   const { searchParams } = new URL(req.url);
   const codeVal = searchParams.get("code");
-  console.log(codeVal)
+  // console.log(codeVal)
 
   let token = req.cookies.get("verify");
   let payload = token && (await VerifyToken(token.value));
